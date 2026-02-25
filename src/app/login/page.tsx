@@ -16,7 +16,6 @@ export default function LoginPage() {
 
   useEffect(() => {
     setIsMounted(true)
-    // Removi a verificação automática que te jogava para o perfil antes da hora
   }, [])
 
   const handleGoogleLogin = async () => {
@@ -24,11 +23,11 @@ export default function LoginPage() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: { 
-          // Redireciona para o callback para processar os dados antes de ir ao perfil
-          redirectTo: `${window.location.origin}/auth/callback?next=/perfil`,
+          // ALTERAÇÃO AQUI: Agora redireciona para /plans após o callback
+          redirectTo: `${window.location.origin}/auth/callback?next=/plans`,
           queryParams: {
             access_type: 'offline',
-            prompt: 'select_account', // OBRIGA o Google a perguntar qual conta usar
+            prompt: 'select_account',
           },
         },
       })
@@ -52,8 +51,8 @@ export default function LoginPage() {
       if (error) {
         alert(`Erro: ${error.message}`)
       } else if (data.user) {
-        // Login manual enviando direto para o perfil
-        router.push('/perfil')
+        // ALTERAÇÃO AQUI: Login manual enviando direto para os planos
+        router.push('/plans')
         router.refresh() 
       }
     } catch (err) {

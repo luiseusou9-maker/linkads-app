@@ -1,7 +1,7 @@
 // @ts-nocheck
 'use client'
 import { useState } from 'react'
-// CORREÇÃO: Usando o import oficial que o seu Windows aceitou (evita o erro de Module Not Found)
+// CORREÇÃO: Usando o import oficial que o seu Windows aceitou
 import { createClient } from '@/lib/supabase' 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -35,9 +35,9 @@ export default function CadastroPage() {
     } else {
       setMessage('📧 Sucesso! Configurando seu arsenal...')
       
-      // REDIRECIONAMENTO PARA PLANOS: Para o usuário escolher o acesso logo após criar a conta
+      // REDIRECIONAMENTO UNIFICADO: Mandando para /plans (padrão do projeto)
       setTimeout(() => {
-        router.push('/planos')
+        router.push('/plans')
       }, 2000)
     }
   }
@@ -45,7 +45,7 @@ export default function CadastroPage() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-black px-4 font-sans relative overflow-hidden">
       
-      {/* BACKGROUND DE ELITE (PRESERVADO INTEGRALMENTE) */}
+      {/* BACKGROUND DE ELITE */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[400px] bg-blue-600/10 blur-[120px] rounded-full opacity-50"></div>
